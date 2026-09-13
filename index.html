@@ -840,25 +840,38 @@
       fill: #f97316;
     }
 
-    /* Pin Styles & Pop Interactivity */
+    /* Pin Styles & Pop Interactivity (No Jitter) */
     .map-pin-group {
       cursor: pointer;
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      transform-origin: center;
+      user-select: none;
     }
 
-    .map-pin-group:hover {
-      transform: scale(1.18);
+    .map-pin-group .pin-core {
+      transition: stroke 0.2s ease, stroke-width 0.2s ease, fill 0.2s ease;
+    }
+
+    .map-pin-group .pin-label-bubble rect {
+      transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease;
+    }
+
+    .map-pin-group .pin-label-bubble text {
+      transition: fill 0.2s ease;
     }
 
     .map-pin-group:hover .pin-core {
       stroke: #facc15;
-      stroke-width: 3.5;
+      stroke-width: 4px;
+    }
+
+    .map-pin-group:hover .pin-glow {
+      opacity: 0.65;
+      fill: #facc15;
     }
 
     .map-pin-group:hover .pin-label-bubble rect {
       fill: #0f172a;
       stroke: #38bdf8;
+      stroke-width: 2.2px;
     }
 
     .map-pin-group:hover .pin-label-bubble text {
@@ -868,11 +881,64 @@
 
     .pin-glow {
       animation: pulseGlow 2.5s infinite ease-in-out;
+      pointer-events: none;
     }
 
     @keyframes pulseGlow {
-      0%, 100% { r: 14; opacity: 0.25; }
-      50% { r: 19; opacity: 0.45; }
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.55; }
+    }
+
+    /* Floating Jump to Map Button */
+    .floating-map-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 980;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
+      color: #ffffff;
+      padding: 11px 20px;
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.45);
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+    }
+
+    .floating-map-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .floating-map-btn:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 12px 28px rgba(2, 132, 199, 0.55), 0 4px 10px rgba(0, 0, 0, 0.2);
+      color: #ffffff;
+    }
+
+    .floating-map-icon {
+      font-size: 1.15rem;
+    }
+
+    /* Sidebar Map Link Style */
+    .map-sidebar-link {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      margin-bottom: 8px;
+    }
+
+    .map-sidebar-link:hover {
+      background: #e0f2fe;
     }
 
     .dimmed {
@@ -1686,6 +1752,13 @@
 
       <!-- Spots List in Sidebar -->
       <nav class="sidebar-nav-container" id="sidebarNavContainer">
+          <a href="#routeMapSection" class="sidebar-spot-link map-sidebar-link" id="nav-link-routeMapSection" data-spot-id="routeMapSection" onclick="onSidebarNavClick(event, 'routeMapSection')">
+            <span class="nav-badge" style="background: linear-gradient(135deg, #0284c7, #0d9488); font-size: 1.15rem;">🗺️</span>
+            <div class="nav-text">
+              <div class="nav-spot-title" style="color: #0284c7; font-weight: 800;">宮古島 全体ルートマップ</div>
+              <div class="nav-spot-meta"><span>📍 A 〜 N の巡り順</span></div>
+            </div>
+          </a>
           <a href="#spot-01" class="sidebar-spot-link" id="nav-link-spot-01" data-spot-id="spot-01" onclick="onSidebarNavClick(event, 'spot-01')">
             <span class="nav-badge" style="background-color: #0284c7;">A</span>
             <div class="nav-text">
@@ -1985,6 +2058,8 @@
             <g class="pins-layer" id="pinsLayer">
               
     <g class="map-pin-group" data-spot-id="spot-01" data-day="day-23" onclick="jumpToSpot('spot-01')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="472.5" cy="373.7" r="22" fill="transparent" pointer-events="all" />
       <circle cx="472.5" cy="373.7" r="15" fill="#0284c7" opacity="0.25" class="pin-glow" />
       <circle cx="472.5" cy="373.7" r="11" fill="#0284c7" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="472.5" y="377.7" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">A</text>
@@ -1995,6 +2070,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-02" data-day="day-24" onclick="jumpToSpot('spot-02')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="553.8" cy="546.0" r="22" fill="transparent" pointer-events="all" />
       <circle cx="553.8" cy="546.0" r="15" fill="#0ea5e9" opacity="0.25" class="pin-glow" />
       <circle cx="553.8" cy="546.0" r="11" fill="#0ea5e9" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="553.8" y="550.0" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">B</text>
@@ -2005,6 +2082,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-03" data-day="day-24" onclick="jumpToSpot('spot-03')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="424.0" cy="218.8" r="22" fill="transparent" pointer-events="all" />
       <circle cx="424.0" cy="218.8" r="15" fill="#06b6d4" opacity="0.25" class="pin-glow" />
       <circle cx="424.0" cy="218.8" r="11" fill="#06b6d4" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="424.0" y="222.8" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">C</text>
@@ -2015,6 +2094,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-04" data-day="day-24" onclick="jumpToSpot('spot-04')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="387.9" cy="132.7" r="22" fill="transparent" pointer-events="all" />
       <circle cx="387.9" cy="132.7" r="15" fill="#14b8a6" opacity="0.25" class="pin-glow" />
       <circle cx="387.9" cy="132.7" r="11" fill="#14b8a6" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="387.9" y="136.7" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">D</text>
@@ -2025,6 +2106,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-05" data-day="day-24" onclick="jumpToSpot('spot-05')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="381.4" cy="116.6" r="22" fill="transparent" pointer-events="all" />
       <circle cx="381.4" cy="116.6" r="15" fill="#0284c7" opacity="0.25" class="pin-glow" />
       <circle cx="381.4" cy="116.6" r="11" fill="#0284c7" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="381.4" y="120.6" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">E</text>
@@ -2035,6 +2118,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-06" data-day="day-24" onclick="jumpToSpot('spot-06')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="412.7" cy="426.3" r="22" fill="transparent" pointer-events="all" />
       <circle cx="412.7" cy="426.3" r="15" fill="#0ea5e9" opacity="0.25" class="pin-glow" />
       <circle cx="412.7" cy="426.3" r="11" fill="#0ea5e9" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="412.7" y="430.3" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">F</text>
@@ -2045,6 +2130,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-07" data-day="day-24" onclick="jumpToSpot('spot-07')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="151.0" cy="349.1" r="22" fill="transparent" pointer-events="all" />
       <circle cx="151.0" cy="349.1" r="15" fill="#0d9488" opacity="0.25" class="pin-glow" />
       <circle cx="151.0" cy="349.1" r="11" fill="#0d9488" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="151.0" y="353.1" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">G</text>
@@ -2055,6 +2142,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-08" data-day="day-24" onclick="jumpToSpot('spot-08')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="151.4" cy="306.4" r="22" fill="transparent" pointer-events="all" />
       <circle cx="151.4" cy="306.4" r="15" fill="#0891b2" opacity="0.25" class="pin-glow" />
       <circle cx="151.4" cy="306.4" r="11" fill="#0891b2" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="151.4" y="310.4" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">H</text>
@@ -2065,6 +2154,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-09" data-day="day-24" onclick="jumpToSpot('spot-09')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="440.3" cy="397.7" r="22" fill="transparent" pointer-events="all" />
       <circle cx="440.3" cy="397.7" r="15" fill="#e11d48" opacity="0.25" class="pin-glow" />
       <circle cx="440.3" cy="397.7" r="11" fill="#e11d48" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="440.3" y="401.7" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">I</text>
@@ -2075,6 +2166,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-10" data-day="day-25" onclick="jumpToSpot('spot-10')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="441.0" cy="451.4" r="22" fill="transparent" pointer-events="all" />
       <circle cx="441.0" cy="451.4" r="15" fill="#f59e0b" opacity="0.25" class="pin-glow" />
       <circle cx="441.0" cy="451.4" r="11" fill="#f59e0b" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="441.0" y="455.4" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">J</text>
@@ -2085,6 +2178,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-11" data-day="day-25" onclick="jumpToSpot('spot-11')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="886.7" cy="555.6" r="22" fill="transparent" pointer-events="all" />
       <circle cx="886.7" cy="555.6" r="15" fill="#6366f1" opacity="0.25" class="pin-glow" />
       <circle cx="886.7" cy="555.6" r="11" fill="#6366f1" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="886.7" y="559.6" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">K</text>
@@ -2095,6 +2190,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-12" data-day="day-25" onclick="jumpToSpot('spot-12')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="723.8" cy="550.4" r="22" fill="transparent" pointer-events="all" />
       <circle cx="723.8" cy="550.4" r="15" fill="#475569" opacity="0.25" class="pin-glow" />
       <circle cx="723.8" cy="550.4" r="11" fill="#475569" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="723.8" y="554.4" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">L</text>
@@ -2105,6 +2202,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-13" data-day="day-25" onclick="jumpToSpot('spot-13')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="464.2" cy="333.4" r="22" fill="transparent" pointer-events="all" />
       <circle cx="464.2" cy="333.4" r="15" fill="#d97706" opacity="0.25" class="pin-glow" />
       <circle cx="464.2" cy="333.4" r="11" fill="#d97706" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="464.2" y="337.4" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">M</text>
@@ -2115,6 +2214,8 @@
     </g>
 
     <g class="map-pin-group" data-spot-id="spot-14" data-day="day-25" onclick="jumpToSpot('spot-14')">
+      <!-- Invisible stable hitbox to prevent cursor flickering -->
+      <circle cx="476.5" cy="408.7" r="22" fill="transparent" pointer-events="all" />
       <circle cx="476.5" cy="408.7" r="15" fill="#b45309" opacity="0.25" class="pin-glow" />
       <circle cx="476.5" cy="408.7" r="11" fill="#b45309" stroke="#ffffff" stroke-width="2.5" class="pin-core" />
       <text x="476.5" y="412.7" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" fill="#ffffff" pointer-events="none">N</text>
@@ -4649,6 +4750,12 @@
     </div>
   </div>
 
+  <!-- Floating Back to Map Button -->
+  <button type="button" class="floating-map-btn" id="floatingMapBtn" onclick="jumpToSpot('routeMapSection')" title="宮古島ルートマップへ移動">
+    <span class="floating-map-icon">🗺️</span>
+    <span>マップへ戻る</span>
+  </button>
+
   <!-- Lightbox Modal -->
   <div class="lightbox-modal" id="lightboxModal">
     <div class="lb-header">
@@ -5036,6 +5143,21 @@
       const modal = document.getElementById('qrModal');
       if (modal) modal.classList.remove('active');
     }
+
+    // Floating Map Button Scroll Listener
+    window.addEventListener('scroll', () => {
+      const mapEl = document.getElementById('routeMapSection');
+      const fab = document.getElementById('floatingMapBtn');
+      if (mapEl && fab) {
+        const mapRect = mapEl.getBoundingClientRect();
+        // Show floating button when map is scrolled past (bottom of map is above upper viewport)
+        if (mapRect.bottom < 100) {
+          fab.classList.add('visible');
+        } else {
+          fab.classList.remove('visible');
+        }
+      }
+    });
 
     // Pop Route Map Interactivity
     function jumpToSpot(spotId) {
