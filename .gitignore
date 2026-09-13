@@ -1,0 +1,26 @@
+# Large original backup folders (DO NOT upload to GitHub / Render)
+VOID/
+VOID/**
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*.class
+*.pyc
+
+# Temporary & scratch files
+temp_*
+*.temp
+scratch/
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+.BIN/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
