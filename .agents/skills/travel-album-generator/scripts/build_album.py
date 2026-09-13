@@ -1376,7 +1376,7 @@ def build_album(data_path="album_data.json", output_html="index.html", base_dir=
           stroke: #f97316;
           stroke-width: 3.5;
           stroke-dasharray: 8 6;
-          animation: dashFlow 25s linear infinite reverse;
+          animation: dashFlow 25s linear infinite;
         }
     
         @keyframes dashFlow {
