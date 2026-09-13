@@ -81,6 +81,21 @@
     .sidebar-title-area {
       display: flex;
       flex-direction: column;
+      cursor: pointer;
+      user-select: none;
+      padding: 6px 10px;
+      margin: -6px -10px;
+      border-radius: 10px;
+      transition: background 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+    }
+
+    .sidebar-title-area:hover {
+      background: #e2e8f0;
+      opacity: 0.9;
+    }
+
+    .sidebar-title-area:active {
+      transform: scale(0.98);
     }
 
     .sidebar-brand {
@@ -284,6 +299,15 @@
       font-size: 0.95rem;
       font-weight: 800;
       color: var(--text-main);
+      cursor: pointer;
+      user-select: none;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .mobile-brand-title:hover {
+      opacity: 0.75;
     }
 
     /* Mobile Drawer Backdrop */
@@ -1732,7 +1756,7 @@
     <!-- Left Sidebar Navigation -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <div class="sidebar-title-area">
+        <div class="sidebar-title-area" onclick="jumpToTop()" title="トップページへ戻る" role="button" tabindex="0">
           <div class="sidebar-brand">🌴 宮古島 2026</div>
           <div class="sidebar-sub">スポット案内 (全14箇所)</div>
         </div>
@@ -1865,7 +1889,7 @@
       <!-- Mobile Sticky Top Bar -->
       <header class="mobile-top-bar">
         <button class="mobile-menu-btn" onclick="openSidebar()">☰ スポット一覧</button>
-        <div class="mobile-brand-title">宮古島アルバム 2026</div>
+        <div class="mobile-brand-title" onclick="jumpToTop()" title="トップページへ戻る" role="button" tabindex="0">宮古島アルバム 2026</div>
       </header>
 
       <!-- Hero Header -->
@@ -4849,6 +4873,17 @@
       jumpToSpot(spotId);
     }
 
+    function jumpToTop() {
+      if (window.innerWidth < 1024) {
+        closeSidebar();
+      }
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      document.querySelectorAll('.sidebar-spot-link').forEach(link => link.classList.remove('active'));
+    }
+
     function showToast(msg) {
       const t = document.getElementById('toastPopup');
       t.textContent = msg;
@@ -5222,6 +5257,13 @@
       if (e.key === 'Escape') { closeLightbox(); closeQrModal(); }
       else if (e.key === 'ArrowLeft') navLightbox(-1);
       else if (e.key === 'ArrowRight') navLightbox(1);
+    });
+
+    document.querySelector('.sidebar-title-area')?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        jumpToTop();
+      }
     });
   </script>
 </body>
