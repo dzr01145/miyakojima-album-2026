@@ -410,165 +410,80 @@
         }
     
     
-        /* Hero QR Showcase Card */
-        .hero-qr-wrap {
-          margin: 22px auto 26px;
-          max-width: 580px;
-        }
-    
-        .hero-qr-card {
-          display: flex;
-          align-items: center;
-          gap: 18px;
-          background: rgba(255, 255, 255, 0.16);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid rgba(255, 255, 255, 0.35);
-          border-radius: 18px;
-          padding: 16px 20px;
-          box-shadow: 0 12px 30px -6px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-          text-align: left;
-          transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
-        }
-    
-        .hero-qr-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-        }
-    
-        .hero-qr-thumb {
-          flex-shrink: 0;
-          background: #ffffff;
-          padding: 8px;
-          border-radius: 14px;
-          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
-          cursor: pointer;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-    
-        .hero-qr-thumb:hover {
-          transform: scale(1.04);
-          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
-        }
-    
-        .hero-qr-img {
-          display: block;
-          width: 96px;
-          height: 96px;
-          border-radius: 4px;
-        }
-    
-        .qr-zoom-lbl {
-          font-size: 0.65rem;
-          font-weight: 700;
-          color: #0369a1;
-          margin-top: 4px;
-          letter-spacing: 0.02em;
-        }
-    
-        .hero-qr-details {
-          flex: 1;
-          min-width: 0;
-        }
-    
-        .hero-qr-badges {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          margin-bottom: 5px;
-          flex-wrap: wrap;
-        }
-    
-        .hero-qr-tag {
-          background: #0284c7;
-          color: white;
-          font-size: 0.7rem;
-          font-weight: 800;
-          padding: 2px 9px;
-          border-radius: 999px;
-          letter-spacing: 0.03em;
-          box-shadow: 0 2px 6px rgba(2, 132, 199, 0.4);
-        }
-    
-        .hero-qr-tag-sub {
-          font-size: 0.75rem;
-          color: rgba(255, 255, 255, 0.9);
-          font-weight: 600;
-        }
-    
-        .hero-qr-headline {
-          font-size: 1.05rem;
-          font-weight: 800;
-          color: #ffffff;
-          line-height: 1.35;
-          margin-bottom: 6px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-          letter-spacing: -0.01em;
-        }
-    
-        .hero-qr-link-box {
-          background: rgba(15, 23, 42, 0.35);
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          border-radius: 8px;
-          padding: 4px 10px;
-          margin-bottom: 10px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-    
-        .hero-qr-link-text {
-          font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-          font-size: 0.76rem;
-          color: #bae6fd;
-          text-decoration: none;
-          user-select: all;
-        }
-    
-        .hero-qr-buttons {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-        }
-    
-        .hero-btn {
+        /* Small QR Trigger Button (Top Left of Hero Header) */
+        .hero-qr-trigger-btn {
+          position: absolute;
+          top: 18px;
+          left: 22px;
+          z-index: 20;
           display: inline-flex;
           align-items: center;
-          gap: 5px;
-          font-size: 0.74rem;
+          gap: 7px;
+          background: rgba(255, 255, 255, 0.2);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.38);
+          color: #ffffff;
+          padding: 6px 14px;
+          border-radius: 999px;
+          font-size: 0.8rem;
           font-weight: 700;
-          padding: 6px 12px;
-          border-radius: 8px;
-          border: none;
           cursor: pointer;
-          text-decoration: none;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
           transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
     
-        .hero-btn-primary {
+        .hero-qr-trigger-btn:hover {
+          background: rgba(255, 255, 255, 0.35);
+          transform: translateY(-1px);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+        }
+    
+        .hero-qr-trigger-btn:active {
+          transform: scale(0.97);
+        }
+    
+        .qr-trigger-icon {
+          width: 18px;
+          height: 18px;
+          border-radius: 4px;
           background: #ffffff;
-          color: #0369a1;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+          padding: 2px;
+          object-fit: contain;
+          flex-shrink: 0;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
     
-        .hero-btn-primary:hover {
-          background: #f0f9ff;
-          transform: translateY(-1px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+        /* Mobile QR Button in Top Bar */
+        .mobile-qr-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          padding: 5px 10px;
+          background: rgba(2, 132, 199, 0.12);
+          border: 1px solid #bae6fd;
+          color: var(--primary-dark);
+          border-radius: 8px;
+          font-size: 0.78rem;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.2s;
         }
     
-        .hero-btn-secondary {
-          background: rgba(255, 255, 255, 0.18);
-          color: white;
-          border: 1px solid rgba(255, 255, 255, 0.35);
+        .mobile-qr-btn:hover {
+          background: #e0f2fe;
         }
     
-        .hero-btn-secondary:hover {
-          background: rgba(255, 255, 255, 0.3);
-          transform: translateY(-1px);
+        .mobile-qr-btn .qr-trigger-icon {
+          width: 16px;
+          height: 16px;
+          padding: 1px;
+        }
+    
+        @media (max-width: 640px) {
+          .hero-qr-trigger-btn {
+            display: none;
+          }
         }
     
         /* QR Modal */
@@ -599,7 +514,7 @@
           background: #ffffff;
           border-radius: 20px;
           padding: 28px 24px;
-          max-width: 380px;
+          max-width: 360px;
           width: 100%;
           text-align: center;
           position: relative;
@@ -648,7 +563,7 @@
         }
     
         .qr-modal-heading {
-          font-size: 1.2rem;
+          font-size: 1.15rem;
           font-weight: 800;
           color: #0f172a;
           margin-bottom: 4px;
@@ -657,7 +572,7 @@
         .qr-modal-subtitle {
           font-size: 0.8rem;
           color: #64748b;
-          margin-bottom: 18px;
+          margin-bottom: 16px;
         }
     
         .qr-modal-frame {
@@ -667,7 +582,7 @@
           border-radius: 16px;
           border: 1px solid #e2e8f0;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-          margin-bottom: 16px;
+          margin-bottom: 18px;
         }
     
         .qr-modal-large-img {
@@ -677,24 +592,22 @@
           border-radius: 8px;
         }
     
-        .qr-modal-url-box {
+        .qr-modal-action-close {
           background: #f1f5f9;
-          padding: 6px 12px;
-          border-radius: 8px;
-          font-family: monospace;
-          font-size: 0.78rem;
-          color: #0369a1;
-          margin-bottom: 18px;
-          word-break: break-all;
+          color: #475569;
+          border: 1px solid #cbd5e1;
+          padding: 8px 26px;
+          border-radius: 999px;
+          font-size: 0.85rem;
+          font-weight: 700;
+          cursor: pointer;
+          transition: all 0.2s;
         }
     
-        @media (max-width: 640px) {
-          .hero-qr-card {
-            flex-direction: column;
-            text-align: center;
-            gap: 14px;
-            padding: 18px 14px;
-          }
+        .qr-modal-action-close:hover {
+          background: #e2e8f0;
+          color: #0f172a;
+        }
           .hero-qr-badges,
           .hero-qr-buttons {
             justify-content: center;
@@ -1890,42 +1803,24 @@
           <header class="mobile-top-bar">
             <button class="mobile-menu-btn" onclick="openSidebar()">☰ スポット一覧</button>
             <div class="mobile-brand-title" onclick="jumpToTop()" title="トップページへ戻る" role="button" tabindex="0">宮古島アルバム 2026</div>
+            <button type="button" class="mobile-qr-btn" onclick="openQrModal()" title="QRコードを表示">
+              <img src="qrcode.png" alt="QR" class="qr-trigger-icon">
+              <span>QR表示</span>
+            </button>
           </header>
     
           <!-- Hero Header -->
           <header class="hero">
+            <!-- Small QR Trigger Button at Top Left -->
+            <button type="button" class="hero-qr-trigger-btn" onclick="openQrModal()" title="スマホ連携 QRコードを表示">
+              <img src="qrcode.png" alt="QR" class="qr-trigger-icon">
+              <span>QR表示</span>
+            </button>
+
             <div class="hero-inner">
               <h1>宮古島 トリップアルバム</h1>
               <p class="lead">平良の夜会食、宮古ブルーの海岸線、東平安名埼灯台、地下ダムなど。<br>3日間旅程のフォトギャラリー。</p>
     
-              <!-- Cool QR Code Showcase Card -->
-              <div class="hero-qr-wrap">
-                <div class="hero-qr-card">
-                  <div class="hero-qr-thumb" onclick="openQrModal()" title="タップしてQRコードを拡大">
-                    <img src="qrcode.png" alt="宮古島アルバム Web URL QRコード" class="hero-qr-img" width="96" height="96">
-                    <span class="qr-zoom-lbl">🔍 拡大</span>
-                  </div>
-                  <div class="hero-qr-details">
-                    <div class="hero-qr-badges">
-                      <span class="hero-qr-tag">📱 スマホ対応</span>
-                    </div>
-                    <div class="hero-qr-link-box" title="公開URL">
-                      <span class="hero-qr-link-text">https://dzr01145.github.io/miyakojima-album-2026/</span>
-                    </div>
-                    <div class="hero-qr-buttons">
-                      <button type="button" class="hero-btn hero-btn-primary" onclick="copyAlbumUrl(this)">
-                        📋 URLをコピー
-                      </button>
-                      <button type="button" class="hero-btn hero-btn-secondary" onclick="openQrModal()">
-                        🔍 QRコード拡大
-                      </button>
-                      <a href="qrcode.png" download="miyakojima-album-qr.png" class="hero-btn hero-btn-secondary">
-                        💾 QR画像保存
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <div class="stats-bar">
                 <div class="stat-box">
                   <div class="stat-num">14</div>
@@ -4760,14 +4655,8 @@
           <div class="qr-modal-frame">
             <img src="qrcode.png" alt="宮古島アルバム Web URL QRコード" class="qr-modal-large-img" width="210" height="210">
           </div>
-          <div class="qr-modal-url-box">
-            https://dzr01145.github.io/miyakojima-album-2026/
-          </div>
-          <div style="display: flex; gap: 8px; justify-content: center;">
-            <button type="button" class="hero-btn hero-btn-primary" style="background:#0284c7; color:white; padding:8px 18px;" onclick="copyAlbumUrl(this)">
-              📋 URLをコピー
-            </button>
-            <button type="button" class="hero-btn hero-btn-secondary" style="background:#f1f5f9; color:#475569; border:1px solid #cbd5e1; padding:8px 16px;" onclick="closeQrModal(event)">
+          <div>
+            <button type="button" class="qr-modal-action-close" onclick="closeQrModal(event)">
               閉じる
             </button>
           </div>
