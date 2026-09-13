@@ -385,6 +385,298 @@
       font-weight: 500;
     }
 
+
+    /* Hero QR Showcase Card */
+    .hero-qr-wrap {
+      margin: 22px auto 26px;
+      max-width: 580px;
+    }
+
+    .hero-qr-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 18px;
+      padding: 16px 20px;
+      box-shadow: 0 12px 30px -6px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      text-align: left;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    }
+
+    .hero-qr-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .hero-qr-thumb {
+      flex-shrink: 0;
+      background: #ffffff;
+      padding: 8px;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hero-qr-thumb:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.24);
+    }
+
+    .hero-qr-img {
+      display: block;
+      width: 96px;
+      height: 96px;
+      border-radius: 4px;
+    }
+
+    .qr-zoom-lbl {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #0369a1;
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-qr-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero-qr-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 5px;
+      flex-wrap: wrap;
+    }
+
+    .hero-qr-tag {
+      background: #0284c7;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.03em;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.4);
+    }
+
+    .hero-qr-tag-sub {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+    }
+
+    .hero-qr-headline {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.35;
+      margin-bottom: 6px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      letter-spacing: -0.01em;
+    }
+
+    .hero-qr-link-box {
+      background: rgba(15, 23, 42, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .hero-qr-link-text {
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 0.76rem;
+      color: #bae6fd;
+      text-decoration: none;
+      user-select: all;
+    }
+
+    .hero-qr-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-btn-primary {
+      background: #ffffff;
+      color: #0369a1;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .hero-btn-primary:hover {
+      background: #f0f9ff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-btn-secondary {
+      background: rgba(255, 255, 255, 0.18);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .hero-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* QR Modal */
+    .qr-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1050;
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .qr-modal-overlay.active {
+      display: flex;
+      animation: qrFadeIn 0.2s ease-out;
+    }
+
+    @keyframes qrFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .qr-modal-dialog {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 28px 24px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.28);
+      animation: qrSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes qrSlideUp {
+      from { transform: translateY(20px) scale(0.96); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .qr-modal-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: #f1f5f9;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1rem;
+      color: #64748b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .qr-modal-close-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .qr-modal-pill {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0284c7;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 12px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
+    }
+
+    .qr-modal-heading {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .qr-modal-subtitle {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-bottom: 18px;
+    }
+
+    .qr-modal-frame {
+      display: inline-block;
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 16px;
+    }
+
+    .qr-modal-large-img {
+      display: block;
+      width: 210px;
+      height: 210px;
+      border-radius: 8px;
+    }
+
+    .qr-modal-url-box {
+      background: #f1f5f9;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 0.78rem;
+      color: #0369a1;
+      margin-bottom: 18px;
+      word-break: break-all;
+    }
+
+    @media (max-width: 640px) {
+      .hero-qr-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 14px;
+        padding: 18px 14px;
+      }
+      .hero-qr-badges,
+      .hero-qr-buttons {
+        justify-content: center;
+      }
+    }
+
     /* Main Container */
     .main-content {
       max-width: 1250px;
@@ -1306,6 +1598,37 @@
           <div class="hero-badge">🌴 MIYAKOJIMA RETROSPECTIVE 2026</div>
           <h1>宮古島 トリップアルバム</h1>
           <p class="lead">平良の夜会食、宮古ブルーの海岸線、東平安名埼灯台から地下ダムまで。<br>3日間の旅程を時系列とスポット別で巡るフォトギャラリー。</p>
+
+          <!-- Cool QR Code Showcase Card -->
+          <div class="hero-qr-wrap">
+            <div class="hero-qr-card">
+              <div class="hero-qr-thumb" onclick="openQrModal()" title="タップしてQRコードを拡大">
+                <img src="qrcode.png" alt="宮古島アルバム Web URL QRコード" class="hero-qr-img" width="96" height="96">
+                <span class="qr-zoom-lbl">🔍 拡大</span>
+              </div>
+              <div class="hero-qr-details">
+                <div class="hero-qr-badges">
+                  <span class="hero-qr-tag">📱 スマホ対応</span>
+                  <span class="hero-qr-tag-sub">いつでもどこでもアクセス</span>
+                </div>
+                <div class="hero-qr-headline">旅のアルバムをスマホや友達とシェア</div>
+                <div class="hero-qr-link-box" title="公開URL">
+                  <span class="hero-qr-link-text">https://dzr01145.github.io/miyakojima-album-2026/</span>
+                </div>
+                <div class="hero-qr-buttons">
+                  <button type="button" class="hero-btn hero-btn-primary" onclick="copyAlbumUrl(this)">
+                    📋 URLをコピー
+                  </button>
+                  <button type="button" class="hero-btn hero-btn-secondary" onclick="openQrModal()">
+                    🔍 QRコード拡大
+                  </button>
+                  <a href="qrcode.png" download="miyakojima-album-qr.png" class="hero-btn hero-btn-secondary">
+                    💾 QR画像保存
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="stats-bar">
             <div class="stat-box">
               <div class="stat-num">14</div>
@@ -4050,6 +4373,30 @@
     </div>
   </aside>
 
+  <!-- QR Code Zoom Modal -->
+  <div class="qr-modal-overlay" id="qrModal" onclick="closeQrModal(event)">
+    <div class="qr-modal-dialog" onclick="event.stopPropagation()">
+      <button type="button" class="qr-modal-close-btn" onclick="closeQrModal(event)" title="閉じる (ESC)">✕</button>
+      <span class="qr-modal-pill">📱 SMARTPHONE ACCESS</span>
+      <h3 class="qr-modal-heading">宮古島 トリップアルバム 2026</h3>
+      <p class="qr-modal-subtitle">スマホのカメラをかざすと、このアルバムが開きます</p>
+      <div class="qr-modal-frame">
+        <img src="qrcode.png" alt="宮古島アルバム Web URL QRコード" class="qr-modal-large-img" width="210" height="210">
+      </div>
+      <div class="qr-modal-url-box">
+        https://dzr01145.github.io/miyakojima-album-2026/
+      </div>
+      <div style="display: flex; gap: 8px; justify-content: center;">
+        <button type="button" class="hero-btn hero-btn-primary" style="background:#0284c7; color:white; padding:8px 18px;" onclick="copyAlbumUrl(this)">
+          📋 URLをコピー
+        </button>
+        <button type="button" class="hero-btn hero-btn-secondary" style="background:#f1f5f9; color:#475569; border:1px solid #cbd5e1; padding:8px 16px;" onclick="closeQrModal(event)">
+          閉じる
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Lightbox Modal -->
   <div class="lightbox-modal" id="lightboxModal">
     <div class="lb-header">
@@ -4382,10 +4729,67 @@
       updateLightboxDeleteBtn();
     }
 
+    // QR Code Modal & URL Copy Helpers
+    function copyAlbumUrl(btn) {
+      const url = 'https://dzr01145.github.io/miyakojima-album-2026/';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+          const orig = btn.innerHTML;
+          btn.innerHTML = '✅ コピー完了！';
+          btn.style.background = '#10b981';
+          btn.style.color = '#ffffff';
+          setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.style.background = '';
+            btn.style.color = '';
+          }, 2000);
+        }).catch(() => {
+          fallbackCopy(url, btn);
+        });
+      } else {
+        fallbackCopy(url, btn);
+      }
+    }
+
+    function fallbackCopy(url, btn) {
+      const ta = document.createElement('textarea');
+      ta.value = url;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        const orig = btn.innerHTML;
+        btn.innerHTML = '✅ コピー完了！';
+        btn.style.background = '#10b981';
+        btn.style.color = '#ffffff';
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.style.background = '';
+          btn.style.color = '';
+        }, 2000);
+      } catch (e) {
+        prompt('以下のURLをコピーしてください:', url);
+      }
+      document.body.removeChild(ta);
+    }
+
+    function openQrModal() {
+      const modal = document.getElementById('qrModal');
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeQrModal(e) {
+      if (e) e.stopPropagation();
+      const modal = document.getElementById('qrModal');
+      if (modal) modal.classList.remove('active');
+    }
+
     // Keyboard controls
     document.addEventListener('keydown', (e) => {
       if (!modal.classList.contains('active')) return;
-      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'Escape') { closeLightbox(); closeQrModal(); }
       else if (e.key === 'ArrowLeft') navLightbox(-1);
       else if (e.key === 'ArrowRight') navLightbox(1);
     });
