@@ -286,6 +286,16 @@ def cmd_qr(args):
         
     print(f"QR code generated at {png_path} for {url}")
 
+def cmd_build(args):
+    """Build the final responsive HTML web album with sidebar and route map."""
+    try:
+        from build_album import build_album
+    except ImportError:
+        import sys
+        sys.path.append(os.path.dirname(__file__))
+        from build_album import build_album
+    build_album(data_path=args.data, output_html=args.output, base_dir=args.base_dir)
+
 def main():
     parser = argparse.ArgumentParser(description="Travel Album Generator CLI")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -307,6 +317,12 @@ def main():
     p_qr.add_argument("--url", required=True, help="Web album public URL")
     p_qr.add_argument("--output-dir", default=".", help="Output directory")
     p_qr.set_defaults(func=cmd_qr)
+
+    p_build = subparsers.add_parser("build", help="Build web album HTML from album_data.json")
+    p_build.add_argument("--data", default="album_data.json", help="Path to album_data.json")
+    p_build.add_argument("--output", default="index.html", help="Output HTML file path")
+    p_build.add_argument("--base-dir", default=".", help="Base directory")
+    p_build.set_defaults(func=cmd_build)
 
     args = parser.parse_args()
     args.func(args)
